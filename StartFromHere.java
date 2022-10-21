@@ -2,25 +2,29 @@ package softclinic;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.ProgressBarUI;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JProgressBar;
 import java.awt.Font;
 import java.awt.Color;
 
-public class LoadingPage extends JFrame {
+public class StartFromHere extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		LoadingPage loadingPage = new LoadingPage();
+		StartFromHere loadingPage = new StartFromHere();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -66,6 +70,7 @@ public class LoadingPage extends JFrame {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
@@ -77,7 +82,7 @@ public class LoadingPage extends JFrame {
 	private JLabel LoadingText = new JLabel("Loading...");
 	private JLabel LoadingValue = new JLabel("0 %");
 	private JLabel BackGrounImage = new JLabel("");
-	public LoadingPage() {
+	public StartFromHere() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1341, 568);
 		setLocationRelativeTo(null);

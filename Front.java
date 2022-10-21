@@ -2,19 +2,24 @@ package softclinic;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
-import java.awt.GraphicsDevice;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Front extends JFrame{
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Launch the application.
@@ -65,6 +70,7 @@ public class Front extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				AdminLogin aLogin = new AdminLogin();
 				aLogin.setVisible(true);
+				dispose();
 			}
 		});
 		btnAdmin.setForeground(new Color(51, 51, 255));
@@ -82,7 +88,9 @@ public class Front extends JFrame{
 		btnReception.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ReceptionistLogin rLogin = new ReceptionistLogin();
-				rLogin.setVisible(true);			}
+				rLogin.setVisible(true);			
+				dispose();
+			}
 		});
 		btnReception.setForeground(new Color(51, 51, 255));
 		btnReception.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -100,6 +108,7 @@ public class Front extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				DoctorLogin dLogin = new DoctorLogin();
 				dLogin.setVisible(true);
+				dispose();
 			}
 		});
 		btnDoctor.setForeground(new Color(51, 51, 255));

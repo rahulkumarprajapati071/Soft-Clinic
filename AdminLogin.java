@@ -2,6 +2,8 @@ package softclinic;
 
 import java.awt.EventQueue;
 
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,18 +11,23 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
-import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
-import javax.swing.border.LineBorder;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 
 public class AdminLogin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField userTF;
 	private JPasswordField passwTF;
@@ -44,7 +51,36 @@ public class AdminLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	AdminLoginDBConnection conn;
+	AdminRegistration adminRegistration = new AdminRegistration();
+	private void adminLogin(String username,String password)
+	{
+		Connection adminLoginConnection = AdminLoginDBConnection.connectAdminLoginDB();
+		try {
+			PreparedStatement statement = (PreparedStatement)
+					adminLoginConnection.prepareStatement("Select * from registration WHERE username = ? AND password = ?");
+			statement.setString(1,username);
+			statement.setString(2,password);
+			ResultSet resultSet = statement.executeQuery();
+			if(resultSet.next())
+			{
+				//display dashboard or Admin Panel.
+				dispose();
+				AdminPanel window = new AdminPanel();
+				window.frame.setVisible(true);
+			}
+			else {
+				JOptionPane.showMessageDialog(contentPane,"Username / Password not found.","erorr",JOptionPane.ERROR_MESSAGE);
+			}
+			statement.close();
+			adminLoginConnection.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
 	public AdminLogin() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1272, 754);
 		contentPane = new JPanel();
@@ -87,14 +123,14 @@ public class AdminLogin extends JFrame {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userNameString = userTF.getText();
-				String passwordString = passwTF.getText().toString();
-				if(userNameString.isEmpty())
+				String passwordString = String.valueOf(passwTF.getPassword());
+				if(userNameString.isEmpty() || passwordString.isEmpty())
 				{
-					JOptionPane pane = new JOptionPane();
-					pane.showMessageDialog(contentPane, "Username or Password missing", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "Username or Password missing", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
 					//start the login process....
+					adminLogin(userNameString,passwordString);
 				}
 			}
 		});
@@ -103,11 +139,26 @@ public class AdminLogin extends JFrame {
 		panel.add(loginButton);
 		
 		JButton registerButton = new JButton("Register");
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				AdminRegistration adminRegistration = new AdminRegistration();
+				adminRegistration.frame.setVisible(true);
+			}
+		});
+		
 		registerButton.setFont(new Font("Tahoma", Font.BOLD, 25));
 		registerButton.setBounds(977, 561, 146, 38);
 		panel.add(registerButton);
 		
 		JButton backButton = new JButton("");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Front window = new Front();
+				window.setVisible(true);
+			}
+		});
 		backButton.setHorizontalAlignment(SwingConstants.TRAILING);
 		backButton.setBackground(Color.WHITE);
 		backButton.setForeground(new Color(255, 255, 255));
@@ -126,5 +177,12 @@ public class AdminLogin extends JFrame {
 		panel.add(lblNewLabel);
 		
 		setResizable(false);
+		
+		//connectivity portion
+		conn = new AdminLoginDBConnection();
+		if(conn == null)
+		{
+			JOptionPane.showMessageDialog(contentPane, "DataBase Connection not availabel","Error",JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
