@@ -1,2 +1,3 @@
 # Soft-Clinic
-My First Desktop Based Software by Java Swing and MySQL
+int Version 0.1 we added forget password feature and also valid exsiting username or not feature...
+
