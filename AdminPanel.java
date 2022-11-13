@@ -214,7 +214,7 @@ public class AdminPanel {
 		JLabel backgrounLbl = new JLabel("");
 		backgrounLbl.setBackground(Color.RED);
 		backgrounLbl.setForeground(new Color(0, 0, 0));
-		backgrounLbl.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\adminpanel.jpg"));
+		backgrounLbl.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\adminpanel.png"));
 		backgrounLbl.setBounds(0, 0, 1333, 728);
 		frame.getContentPane().add(backgrounLbl);
 		

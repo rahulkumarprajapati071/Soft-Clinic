@@ -281,7 +281,7 @@ public class RPAppointment {
 		}
 	}
 	public void search(String searString)
-	{
+	{ 
 		model = (DefaultTableModel) tblData.getModel();
 		TableRowSorter<DefaultTableModel> tableRowSorter = new TableRowSorter<>(model);
 		tblData.setRowSorter(tableRowSorter);

@@ -19,6 +19,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdminLogin extends JFrame {
 
@@ -94,6 +96,37 @@ public class AdminLogin extends JFrame {
 		panel.setBounds(0, 0, 1258, 764);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		JLabel lblNewLabel_1 = new JLabel("Show");
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			int count = 0;
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				count++;
+				if(count % 2 == 0)
+				{
+					passwTF.setEchoChar('*');
+				}
+				else {
+					passwTF.setEchoChar((char)0);
+				}
+				
+			}
+		});
+		
+		JButton btnForgotPassword = new JButton("Forgot password");
+		btnForgotPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ForgetPassword window = new ForgetPassword();
+				window.frame.setVisible(true);
+			}
+		});
+		btnForgotPassword.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnForgotPassword.setBounds(1000, 511, 152, 25);
+		panel.add(btnForgotPassword);
+		lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD, 22));
+		lblNewLabel_1.setBounds(1162, 477, 58, 33);
+		panel.add(lblNewLabel_1);
 		
 		JLabel userNameLabel = new JLabel("UserName");
 		userNameLabel.setForeground(Color.BLUE);
@@ -166,6 +199,7 @@ public class AdminLogin extends JFrame {
 		panel.add(backButton);
 		
 		passwTF = new JPasswordField();
+		passwTF.setEchoChar('*');
 		passwTF.setBounds(926, 470, 226, 38);
 		panel.add(passwTF);
 		
