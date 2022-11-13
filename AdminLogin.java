@@ -1,26 +1,24 @@
 package softclinic;
 
-import java.awt.EventQueue;
-
-
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Color;
-import javax.swing.JOptionPane;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.JPasswordField;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.awt.event.ActionEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class AdminLogin extends JFrame {
 
@@ -65,6 +63,7 @@ public class AdminLogin extends JFrame {
 			if(resultSet.next())
 			{
 				//display dashboard or Admin Panel.
+				JOptionPane.showMessageDialog(contentPane,"Login Successfull","success",JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 				AdminPanel window = new AdminPanel();
 				window.frame.setVisible(true);
@@ -106,7 +105,7 @@ public class AdminLogin extends JFrame {
 		LoginTextMessageLable.setFont(new Font("Eras Bold ITC", Font.BOLD, 30));
 		LoginTextMessageLable.setBounds(870, 325, 180, 45);
 		panel.add(LoginTextMessageLable);
-		
+	
 		JLabel PasswordLable = new JLabel("Password");
 		PasswordLable.setForeground(Color.BLUE);
 		PasswordLable.setBackground(Color.WHITE);
@@ -162,7 +161,7 @@ public class AdminLogin extends JFrame {
 		backButton.setHorizontalAlignment(SwingConstants.TRAILING);
 		backButton.setBackground(Color.WHITE);
 		backButton.setForeground(new Color(255, 255, 255));
-		backButton.setIcon(new ImageIcon("E:\\Hospital ka saaman\\Hospital Management System\\src\\back (2).png"));
+		backButton.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\back (2).png"));
 		backButton.setBounds(43, 185, 68, 52);
 		panel.add(backButton);
 		
@@ -173,7 +172,7 @@ public class AdminLogin extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 20));
 		lblNewLabel.setBounds(0, 0, 1280, 720);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\ADMINLOGIN (1).jpg"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\ADMINLOGIN (1).png"));
 		panel.add(lblNewLabel);
 		
 		setResizable(false);

@@ -1,16 +1,15 @@
 package softclinic;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class AdminPanel {
 
@@ -110,6 +109,13 @@ public class AdminPanel {
 		frame.getContentPane().add(whitebacklbl_3);
 		
 		JButton DepBTN = new JButton("Department Details");
+		DepBTN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				ADepartmentDetails window = new ADepartmentDetails();
+				window.frame.setVisible(true);
+			}
+		});
 		DepBTN.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		DepBTN.setBounds(838, 596, 183, 37);
 		frame.getContentPane().add(DepBTN);
@@ -120,6 +126,13 @@ public class AdminPanel {
 		frame.getContentPane().add(DepartDetLbl);
 		
 		JButton bedBtn = new JButton("Bed Availibility");
+		bedBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				ABedDetails window = new ABedDetails();
+				window.frame.setVisible(true);
+			}
+		});
 		bedBtn.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		bedBtn.setBounds(590, 596, 148, 37);
 		frame.getContentPane().add(bedBtn);
@@ -148,6 +161,13 @@ public class AdminPanel {
 		frame.getContentPane().add(whitebacklbl_1_2);
 		
 		JButton ptttbtn = new JButton("Patient Details");
+		ptttbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				APatientDetails window = new APatientDetails();
+				window.frame.setVisible(true);
+			}
+		});
 		ptttbtn.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		ptttbtn.setBounds(318, 596, 148, 37);
 		frame.getContentPane().add(ptttbtn);
@@ -164,6 +184,13 @@ public class AdminPanel {
 		frame.getContentPane().add(whitebacklbl_2);
 		
 		JButton btnReceptionistDetails = new JButton("Receptionist Details");
+		btnReceptionistDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				AReceptionistDetails window = new AReceptionistDetails();
+				window.frame.setVisible(true);
+			}
+		});
 		btnReceptionistDetails.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		btnReceptionistDetails.setBounds(842, 352, 176, 37);
 		frame.getContentPane().add(btnReceptionistDetails);

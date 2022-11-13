@@ -1,8 +1,6 @@
 package softclinic;
 
 import java.awt.Color;
-
-
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -31,7 +29,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
 
 import com.toedter.calendar.JDateChooser;
 
@@ -75,6 +72,28 @@ public class AUpdateDoctor {
 			}
 		});
 	}
+	private void clear()
+	{
+		DorIDTF.setText(null);
+		firsNmaTF.setText(null);
+		ageTF.setText(null);
+		addressTF.setText(null);
+		DobTF.setDate(null);
+		adharTF.setText(null);
+		LstNameTF.setText(null);
+		phoNoTF.setText(null);
+		cityTF.setText(null);
+		JoinDTF.setDate(null);
+		levDTF.setText(null);
+		usertF.setText(null);
+		passTF.setText(null);
+		bldgrpComboBx.setSelectedIndex(0);
+		MtrleStatComboBox.setSelectedIndex(0);
+		dprtmComboBx.setSelectedIndex(0);
+		malebtn.setSelected(true);
+		imageLbl.setIcon(null);
+	}
+	
 
 	/**
 	 * Create the application.
@@ -145,13 +164,8 @@ public class AUpdateDoctor {
 		menuBar.add(SearchDoc);
 		
 		JMenu UpdaDoc = new JMenu("Update Doctors");
-		UpdaDoc.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
 		UpdaDoc.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-		UpdaDoc.setIcon(new ImageIcon("E:\\Hospital ka saaman\\Hospital Management System\\src\\UPDATESMALL.png"));
+		UpdaDoc.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\UPDATESMALL.png"));
 		UpdaDoc.setForeground(Color.BLACK);
 		UpdaDoc.setFont(new Font("Verdana", Font.PLAIN, 12));
 		menuBar.add(UpdaDoc);
@@ -406,8 +420,6 @@ public class AUpdateDoctor {
 		usertF.setBounds(1185, 502, 220, 35);
 		frame.getContentPane().add(usertF);
 		
-		JMenuItem minItemUpdateDoctoe = new JMenuItem("UPDATE");
-		
 		DobTF = new JDateChooser();
 		DobTF.setBounds(407, 434, 179, 28);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -421,6 +433,7 @@ public class AUpdateDoctor {
 		passTF.setBounds(1185, 561, 220, 35);
 		frame.getContentPane().add(passTF);
 		
+		JMenuItem minItemUpdateDoctoe = new JMenuItem("UPDATE");
 		minItemUpdateDoctoe.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -440,13 +453,11 @@ public class AUpdateDoctor {
 				String departmentString = (String)dprtmComboBx.getSelectedItem();
 				String addressString = addressTF.getText();
 				String dobString1 = sdf.format(DobTF.getDate());
-				System.out.println(dobString);
 				String phonenoString = phoNoTF.getText();
 				String materialString = (String)MtrleStatComboBox.getSelectedItem();
 				String cityString = cityTF.getText();
 				String aadharString = adharTF.getText();
 				String joininDString = sdf.format(JoinDTF.getDate());
-				System.out.println(joininDString);
 				String visitTimeString = VistTimiTF.getText();
 				String leavingString = levDTF.getText();
 				String usernameString = usertF.getText();
@@ -480,12 +491,12 @@ public class AUpdateDoctor {
 					statement.setString(18,browString);
 					statement.setString(19, dobString);
 					int count  = statement.executeUpdate();
-					System.out.println("not update");
 					if(count > 0)
 					{
 						JOptionPane.showMessageDialog(frame,"Doctor Updation Succesfull","erorr",JOptionPane.INFORMATION_MESSAGE);
 						
 					}
+					clear();
 				} catch (Exception en) {
 					// TODO: handle exception
 					en.printStackTrace();
@@ -521,7 +532,6 @@ public class AUpdateDoctor {
 							adminLoginConnection.prepareStatement("select * from doctordetails where DoctorID = ?");
 					statement.setString(1, docID);
 					ResultSet resultSet = statement.executeQuery();
-					System.out.println("rahl");
 					if(resultSet.next())
 					{
 						
@@ -530,7 +540,7 @@ public class AUpdateDoctor {
 						LstNameTF.setText(resultSet.getString(3));
 						ageTF.setText(resultSet.getString(4));
 						bldgrpComboBx.setSelectedItem(resultSet.getString(5));
-						if(resultSet.getString(6) == "Male")
+						if(resultSet.getString(6).equals("Male"))
 						{
 							malebtn.setSelected(true);
 						}

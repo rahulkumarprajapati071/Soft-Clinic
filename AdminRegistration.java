@@ -1,25 +1,24 @@
 package softclinic;
 
-import java.awt.EventQueue;
-
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.SystemColor;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.awt.event.ActionEvent;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class AdminRegistration {
 
@@ -71,7 +70,7 @@ public class AdminRegistration {
 		
 		JLabel FnameLbl = new JLabel("First Name");
 		FnameLbl.setFont(new Font("Tahoma", Font.BOLD, 30));
-		FnameLbl.setForeground(new Color(0, 0, 0));
+		FnameLbl.setForeground(new Color(0, 0, 255));
 		FnameLbl.setBounds(181, 175, 181, 86);
 		frame.getContentPane().add(FnameLbl);
 		
@@ -81,7 +80,7 @@ public class AdminRegistration {
 		nameTF.setColumns(10);
 		
 		JLabel LnameLbl = new JLabel("Last Name");
-		LnameLbl.setForeground(Color.BLACK);
+		LnameLbl.setForeground(new Color(0, 0, 255));
 		LnameLbl.setFont(new Font("Tahoma", Font.BOLD, 30));
 		LnameLbl.setBounds(685, 175, 181, 86);
 		frame.getContentPane().add(LnameLbl);
@@ -93,13 +92,13 @@ public class AdminRegistration {
 		frame.getContentPane().add(LastNameTF);
 		
 		JLabel lblAge = new JLabel("Gender");
-		lblAge.setForeground(Color.BLACK);
+		lblAge.setForeground(new Color(0, 0, 255));
 		lblAge.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblAge.setBounds(181, 294, 181, 86);
 		frame.getContentPane().add(lblAge);
 		
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setForeground(Color.BLACK);
+		lblAddress.setForeground(new Color(0, 0, 255));
 		lblAddress.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblAddress.setBounds(685, 294, 181, 86);
 		frame.getContentPane().add(lblAddress);
@@ -111,7 +110,7 @@ public class AdminRegistration {
 
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setForeground(Color.BLACK);
+		lblUsername.setForeground(new Color(0, 0, 255));
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblUsername.setBounds(181, 440, 181, 86);
 		frame.getContentPane().add(lblUsername);
@@ -122,7 +121,7 @@ public class AdminRegistration {
 		frame.getContentPane().add(userTF);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setForeground(Color.BLACK);
+		lblPassword.setForeground(new Color(0, 0, 255));
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblPassword.setBounds(685, 440, 181, 86);
 		frame.getContentPane().add(lblPassword);
@@ -211,7 +210,7 @@ public class AdminRegistration {
 		JLabel backgrounLbl = new JLabel("");
 		backgrounLbl.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		backgrounLbl.setBackground(SystemColor.text);
-		backgrounLbl.setIcon(new ImageIcon("E:\\Hospital ka saaman\\Hospital Management System\\src\\back1.jpg"));
+		backgrounLbl.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\back1.jpg"));
 		backgrounLbl.setBounds(0, 0,1253, 712);
 		frame.getContentPane().add(backgrounLbl);
 		frame.setLocationRelativeTo(null);

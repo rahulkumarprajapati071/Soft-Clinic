@@ -1,17 +1,18 @@
 package softclinic;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Front extends JFrame{
 
@@ -60,8 +61,33 @@ public class Front extends JFrame{
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		JLabel lblReceptionist = new JLabel("");
+		lblReceptionist.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\receptionist.png"));
+		lblReceptionist.setBounds(581, 323, 127, 138);
+		panel.add(lblReceptionist);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(1171, 667, 88, 25);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel("About Us");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				CreditEnd window = new CreditEnd();
+				window.setVisible(true);
+			}
+		});
+		lblNewLabel_2.setBounds(0, 0, 88, 25);
+		panel_1.add(lblNewLabel_2);
+		lblNewLabel_2.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 16));
+		lblNewLabel_2.setForeground(new Color(0, 0, 255));
+		
 		JLabel lblAdmin = new JLabel("");
-		lblAdmin.setIcon(new ImageIcon("E:\\Hospital ka saaman\\Hospital Management System\\build\\classes\\admin.png"));
+		lblAdmin.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\admin.png"));
 		lblAdmin.setBounds(339, 323, 133, 147);
 		panel.add(lblAdmin);
 		
@@ -79,17 +105,12 @@ public class Front extends JFrame{
 		btnAdmin.setBounds(308, 474, 175, 39);
 		panel.add(btnAdmin);
 		
-		JLabel lblReceptionist = new JLabel("");
-		lblReceptionist.setIcon(new ImageIcon("E:\\Hospital ka saaman\\Hospital Management System\\build\\classes\\receptionist.png"));
-		lblReceptionist.setBounds(581, 323, 127, 138);
-		panel.add(lblReceptionist);
-		
 		JButton btnReception = new JButton("RECEPTIONIST");
 		btnReception.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReceptionistLogin rLogin = new ReceptionistLogin();
-				rLogin.setVisible(true);			
 				dispose();
+				ReceptionistLogin window = new ReceptionistLogin();
+				window.frame.setVisible(true);
 			}
 		});
 		btnReception.setForeground(new Color(51, 51, 255));
@@ -99,15 +120,15 @@ public class Front extends JFrame{
 		panel.add(btnReception);
 		
 		JLabel lblDoctor = new JLabel("");
-		lblDoctor.setIcon(new ImageIcon("E:\\Hospital ka saaman\\Hospital Management System\\build\\classes\\doctor (4).png"));
+		lblDoctor.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\doctor (4).png"));
 		lblDoctor.setBounds(831, 323, 127, 138);
 		panel.add(lblDoctor);
 		
 		JButton btnDoctor = new JButton("DOCTOR");
 		btnDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DoctorLogin dLogin = new DoctorLogin();
-				dLogin.setVisible(true);
+				DoctorLogin window = new DoctorLogin();
+				window.frame.setVisible(true);
 				dispose();
 			}
 		});
@@ -119,7 +140,7 @@ public class Front extends JFrame{
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(new Color(153, 255, 255));
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Pictures\\hmbackground.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\hmbackground.png"));
 		lblNewLabel.setBounds(0, 0, 1309, 725);
 		panel.add(lblNewLabel);
 		

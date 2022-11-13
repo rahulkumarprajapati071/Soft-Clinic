@@ -1,6 +1,7 @@
 package softclinic;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 public class AdminLoginDBConnection {
 	
 	static Connection connection;
@@ -17,7 +18,6 @@ public class AdminLoginDBConnection {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("There were errors while connecting to DataBase");
 			return null;
 		}
 	}

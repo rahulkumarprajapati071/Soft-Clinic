@@ -1,8 +1,6 @@
 package softclinic;
 
 import java.awt.Color;
-
-
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -164,7 +162,7 @@ public class ADeleteDoctor {
 			}
 		});
 		UpdaDoc.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-		UpdaDoc.setIcon(new ImageIcon("E:\\Hospital ka saaman\\Hospital Management System\\src\\UPDATESMALL.png"));
+		UpdaDoc.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\UPDATESMALL.png"));
 		UpdaDoc.setForeground(Color.BLACK);
 		UpdaDoc.setFont(new Font("Verdana", Font.PLAIN, 12));
 		menuBar.add(UpdaDoc);
@@ -431,7 +429,6 @@ public class ADeleteDoctor {
 							adminLoginConnection.prepareStatement("delete from doctordetails where DoctorID = ?");
 					statement.setString(1, dIDString);
 					int count = statement.executeUpdate();
-					System.out.println("rahl");
 					if(count > 0)
 					{
 						JOptionPane.showMessageDialog(frame,"Deletion Succesful","success",JOptionPane.INFORMATION_MESSAGE);
@@ -493,7 +490,6 @@ public class ADeleteDoctor {
 							adminLoginConnection.prepareStatement("select * from doctordetails where DoctorID = ?");
 					statement.setString(1, docID);
 					ResultSet resultSet = statement.executeQuery();
-					System.out.println("rahl");
 					if(resultSet.next())
 					{
 						

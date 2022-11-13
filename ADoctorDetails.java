@@ -1,45 +1,43 @@
 package softclinic;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
 
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-
-import javax.swing.SwingConstants;
-import javax.swing.UnsupportedLookAndFeelException;
-
 import com.toedter.calendar.JDateChooser;
-import javax.swing.JPasswordField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class ADoctorDetails {
 
@@ -93,6 +91,7 @@ public class ADoctorDetails {
 	
 	public ADoctorDetails() {
 		initialize();
+		autoID();
 	}
 	
 	private void clear()
@@ -115,6 +114,34 @@ public class ADoctorDetails {
 		dprtmComboBx.setSelectedIndex(0);
 		malebtn.setSelected(true);
 		imageLbl.setIcon(null);
+	}
+	
+	public void autoID()
+	{
+		Connection connection = AdminLoginDBConnection.connectAdminLoginDB();
+		try {
+			PreparedStatement statement = connection.prepareStatement("select Max(DoctorID) from doctordetails");
+			
+			ResultSet rSet = statement.executeQuery();
+			rSet.next();
+			rSet.getString("Max(DoctorID)");
+			if(rSet.getString("Max(DoctorID)")==null)
+			{
+				int DoctorID = 1;
+				String invoicNumString = "DR"+new SimpleDateFormat("ddMM").format(new Date())+DoctorID;
+				DorIDTF.setText(invoicNumString);
+			}
+			else {
+				Long DoctorID = Long.parseLong(rSet.getString("Max(DoctorID)").substring(5));
+				DoctorID++;
+				String invoicNumString = "DR"+new SimpleDateFormat("ddMM").format(new Date())+DoctorID;//DR23101
+				DorIDTF.setText(invoicNumString);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -180,7 +207,7 @@ public class ADoctorDetails {
 			}
 		});
 		UpdaDoc.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-		UpdaDoc.setIcon(new ImageIcon("E:\\Hospital ka saaman\\Hospital Management System\\src\\UPDATESMALL.png"));
+		UpdaDoc.setIcon(new ImageIcon("C:\\Users\\LENOVO\\Documents\\src\\UPDATESMALL.png"));
 		UpdaDoc.setForeground(Color.BLACK);
 		UpdaDoc.setFont(new Font("Verdana", Font.PLAIN, 12));
 		menuBar.add(UpdaDoc);
@@ -237,6 +264,7 @@ public class ADoctorDetails {
 		
 		DorIDTF = new JTextField();
 		DorIDTF.setBounds(407, 158, 179, 28);
+		DorIDTF.setEditable(false);
 		frame.getContentPane().add(DorIDTF);
 		
 		JLabel firsNamLbl = new JLabel("First Name");
@@ -303,7 +331,7 @@ public class ADoctorDetails {
 		mateStatLbl.setBounds(251, 500, 147, 28);
 		frame.getContentPane().add(mateStatLbl);
 		
-		String marStatuString[] = new String[] {"select gender","Married","Widowed","Separated","Divorced","Single"};
+		String marStatuString[] = new String[] {"select","Married","Widowed","Separated","Divorced","Single"};
 		MtrleStatComboBox = new JComboBox<Object>(marStatuString);
 		MtrleStatComboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		MtrleStatComboBox.setBounds(407, 500, 179, 28);
@@ -473,8 +501,7 @@ public class ADoctorDetails {
 		JMenuItem menItmeBrowser = new JMenuItem("Browse");
 		menItmeBrowser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//fetch system file and folder
-				System.out.println("files");
+				//fetch  file and folder
 				JFileChooser chooser = new JFileChooser();
 				FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("IMAGES", "png","jpg","jpeg");
 				chooser.addChoosableFileFilter(fileNameExtensionFilter);
@@ -584,6 +611,7 @@ public class ADoctorDetails {
 					statement.executeUpdate();
 					JOptionPane.showMessageDialog(frame,"Doctor Added Successfuly","success",JOptionPane.INFORMATION_MESSAGE);
 					clear();
+					autoID();
 				} catch (Exception en) {
 					JOptionPane.showMessageDialog(frame,"Doctor Addition Failed","erorr",JOptionPane.ERROR_MESSAGE);
 				}
